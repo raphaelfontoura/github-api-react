@@ -1,0 +1,30 @@
+.home-container {
+    padding-top : 70px;
+    padding-left: 120px;
+    padding-bottom: 70px;
+}
+
+.home-title {
+    font-size     : 48px;
+    line-height   : 64px;
+    letter-spacing: 0.02em;
+    color         : #062847;
+}
+
+.text-container {
+    width: 610px;
+    margin-top: 24px;
+    margin-bottom: 48px;
+}
+
+.text-container p {
+    padding-bottom: 20px;
+    font-size  : 20px;
+    line-height: 36px;
+    color: #5A6774;
+}
+
+.text-container a {
+    text-decoration: none;
+    color: #1890FF;
+}
