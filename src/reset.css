@@ -65,9 +65,6 @@ button,
 textarea,
 select {
   font: inherit;
-}
-
-button {
   border: 0;
   outline: none;
 }
