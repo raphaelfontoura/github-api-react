@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import Button from '../../core/components/Button';
+import Button from 'core/components/Button';
 import './styles.css';
 
 const Home = () => (

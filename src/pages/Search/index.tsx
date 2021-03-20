@@ -1,37 +1,28 @@
-import React, { useEffect, useState } from 'react';
-import Button from '../../core/components/Button';
-import ImageLoader from '../../core/components/Loaders/ImageLoader';
-import InfoLoader from '../../core/components/Loaders/InfoLoader';
+import React, { useState } from 'react';
+import Button from 'core/components/Button';
+import { User } from 'core/models/User';
+import InfoBox from './InfoBox';
+import LoaderBox from './Loader';
 import './styles.css';
 
-type User = {
-    company?: string;
-    blog?: string;
-    location?: string;
-    created_at?: string;
-    repositories?: number;
-    following?: number;
-    followers?: number;
-    avatar_url?: string;
-    html_url?: string;
-}
 
 const Search = () => {
-    const [githubUser, setGithubUser] = useState('');
-    const [user, setUser] = useState<User>({});
-
-    useEffect(() => {
-        
-    }, [])
+    const [inputUser, setInputUser] = useState('');
+    const [userLoad, setUserLoad] = useState<User>({});
+    const [isLoading, setIsLoading] = useState(false);
+    const [showBox, setShowBox] = useState(false);
 
     const handleInput = ({ target }: React.ChangeEvent<HTMLInputElement>) => {
-        setGithubUser(target.value);
+        setInputUser(target.value);
     }
 
     const handleClick = () => {
-        fetch(`/users/${githubUser}`)
+        setIsLoading(true);
+        setShowBox(true);
+        fetch(`/users/${inputUser}`)
             .then(result => result.json())
-            .then(data => setUser(data));
+            .then(data => setUserLoad(data));
+        setIsLoading(false);
     }
 
     return (
@@ -40,7 +31,7 @@ const Search = () => {
                 <div>
                     <h1>Encontre um perfil Github</h1>
                     <input
-                        value={githubUser}
+                        value={inputUser}
                         type="text"
                         placeholder="Usuário Github"
                         className="input-search"
@@ -51,17 +42,16 @@ const Search = () => {
                     <Button text="Encontrar" />
                 </span>
             </div>
-            <div className="info">
-                {user.avatar_url === undefined &&
-                    <div className="loaders">
-                        <ImageLoader />
-                        <InfoLoader />
-                    </div>
-                }
-                {user.avatar_url !== '' &&
-                    <h1>{user.location}</h1>
-                }
-            </div>
+            {showBox &&
+                <div className="info">
+                    {isLoading &&
+                        <LoaderBox />
+                    }
+                    {!isLoading &&
+                        <InfoBox userData={userLoad} />
+                    }
+                </div>
+            }
         </div>
     );
 }

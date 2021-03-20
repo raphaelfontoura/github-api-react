@@ -29,7 +29,7 @@
     height       : 390px;
 }
 
-.loaders {
+.flex-box {
     display: flex;
     align-items: flex-start;
 }
