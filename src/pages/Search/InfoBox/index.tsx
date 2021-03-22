@@ -1,5 +1,6 @@
 import Button from 'core/components/Button';
 import { User } from 'core/models/User';
+import { formatDate } from 'core/utils/formatDate';
 import './styles.css';
 
 type Props = {
@@ -29,7 +30,7 @@ const InfoBox = ({userData}: Props) => (
                     <b> WebSite/Blog: </b> {userData.blog}
                 </span>
                 <span>
-                    <b> Membro desde: </b> {userData.created_at}
+                    <b> Membro desde: </b> {formatDate(userData.created_at)}
                 </span>
             </div>
         </div>

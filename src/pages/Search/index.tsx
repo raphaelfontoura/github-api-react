@@ -4,6 +4,7 @@ import { User } from 'core/models/User';
 import InfoBox from './InfoBox';
 import LoaderBox from './Loader';
 import './styles.css';
+import { toast } from 'react-toastify';
 
 
 const Search = () => {
@@ -16,12 +17,26 @@ const Search = () => {
         setInputUser(target.value);
     }
 
+    const handleInputEnter = (event : React.KeyboardEvent<HTMLInputElement>) => {
+        if(event.code === "Enter") {
+            handleClick();
+        }
+    }
+
     const handleClick = () => {
         setIsLoading(true);
         setShowBox(true);
         fetch(`/users/${inputUser}`)
-            .then(result => result.json())
-            .then(data => setUserLoad(data));
+            .then(result => {
+                if (result.ok) {
+                    result.json().then(data => setUserLoad(data));
+                    setIsLoading(false);
+                } else {
+                    setShowBox(false);
+                    result.json().then(err => 
+                        toast(`Desculpe. Um erro ocorreu: "${err.message}"`));
+                }
+            });
         setIsLoading(false);
     }
 
@@ -36,6 +51,7 @@ const Search = () => {
                         placeholder="Usuário Github"
                         className="input-search"
                         onChange={handleInput}
+                        onKeyDown={handleInputEnter}
                     />
                 </div>
                 <span onClick={handleClick}>
