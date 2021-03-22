@@ -17,8 +17,8 @@ const Search = () => {
         setInputUser(target.value);
     }
 
-    const handleInputEnter = (event : React.KeyboardEvent<HTMLInputElement>) => {
-        if(event.code === "Enter") {
+    const handleInputEnter = (event: React.KeyboardEvent<HTMLInputElement>) => {
+        if (event.code === "Enter") {
             handleClick();
         }
     }
@@ -26,7 +26,7 @@ const Search = () => {
     const handleClick = () => {
         setIsLoading(true);
         setShowBox(true);
-        fetch(`https://api.github.com/users/${inputUser}`)
+        fetch(`/users/${inputUser}`)
             .then(result => {
                 if (result.ok) {
                     result.json().then(data => setUserLoad(data));
