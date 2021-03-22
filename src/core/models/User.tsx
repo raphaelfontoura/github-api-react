@@ -3,7 +3,7 @@ export type User = {
     blog?: string;
     location?: string;
     created_at?: string;
-    repositories?: number;
+    public_repos?: number;
     following?: number;
     followers?: number;
     avatar_url?: string;

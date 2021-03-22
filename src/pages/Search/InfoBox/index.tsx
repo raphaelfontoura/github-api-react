@@ -17,7 +17,7 @@ const InfoBox = ({userData}: Props) => (
         </div>
         <div className="flex-github-infos">
             <div className="github-numbers">
-                <span>Repositórios públicos: {userData.repositories}</span>
+                <span>Repositórios públicos: {userData.public_repos}</span>
                 <span>Seguidores: {userData.followers}</span>
                 <span>Seguindo: {userData.following}</span>
             </div>
