@@ -30,11 +30,12 @@ const Search = () => {
             .then(result => {
                 if (result.ok) {
                     result.json().then(data => setUserLoad(data));
-                    setIsLoading(false);
                 } else {
                     setShowBox(false);
-                    result.json().then(err => 
-                        toast(`Desculpe. Um erro ocorreu: "${err.message}"`));
+                    result.json().then(err => {
+                        toast(`Desculpe. Um erro ocorreu: "${err.message}"`);
+                        console.log(err);
+                    });
                 }
             });
         setIsLoading(false);
