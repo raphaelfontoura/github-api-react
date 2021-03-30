@@ -26,7 +26,7 @@ const Search = () => {
     const handleClick = () => {
         setIsLoading(true);
         setShowBox(true);
-        fetch(`/users/${inputUser}`)
+        fetch(`https://api.github.com/users/${inputUser}`)
             .then(result => {
                 if (result.ok) {
                     result.json().then(data => setUserLoad(data));
